@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI-Driven Secure Smart Irrigation System | Precision Agriculture Security Platform</title>
+  <meta name="description" content="Data-Centric Intelligent Hardware Security & Analytics Platform for Precision Agriculture leveraging IoT sensor arrays, machine learning moisture analytics, and automated water distribution algorithms.">
+
+  <!-- Favicon / Styling -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="navbar">
+    <div class="brand">
+      <div class="brand-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
+          <path d="M12 22s-6-3-6-10 6-10 6-10 6 3 6 10-6 10-6 10z"></path>
+        </svg>
+      </div>
+      <div class="brand-text">
+        <h1>SECURE AGRI-IRRIGATE AI</h1>
+        <span>Precision Agriculture Security & Moisture Analytics</span>
+      </div>
+    </div>
+
+    <div class="nav-metrics">
+      <div class="status-pill">
+        <div id="secStatusDot" class="status-dot"></div>
+        <span id="secStatusText">AI Security Monitoring</span>
+      </div>
+
+      <div class="switch-container">
+        <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 500;">AI Auto Irrigation</span>
+        <label class="switch">
+          <input type="checkbox" id="aiAutoSwitch" checked>
+          <span class="slider"></span>
+        </label>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 0.4rem; background: rgba(30, 41, 59, 0.6); padding: 0.35rem 0.75rem; border-radius: var(--radius-sm); border: 1px solid var(--border-glass);">
+        <span style="font-size: 0.75rem; color: var(--text-muted);">Weather:</span>
+        <select id="weatherSelect" style="background: transparent; color: var(--text-main); border: none; font-size: 0.8rem; outline: none; cursor: pointer;">
+          <option value="Sunny">Sunny (Mild ET0)</option>
+          <option value="Heatwave">Heatwave (High ET0)</option>
+          <option value="Cloudy">Cloudy (Low ET0)</option>
+          <option value="Rain">Rain Shower</option>
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="dashboard-container">
+
+    <!-- Top Key Architectural Highlights Stats Bar -->
+    <section class="stats-grid">
+      <!-- Water Reduced -->
+      <div class="stat-card">
+        <div class="stat-icon water">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+        </div>
+        <div class="stat-info">
+          <div class="stat-label">Water Reduction</div>
+          <div class="stat-value" id="statSavingsVal">35.8%</div>
+          <div class="stat-sub" id="statWaterSavedLiters">14,250 Liters Saved</div>
+        </div>
+      </div>
+
+      <!-- Security Status -->
+      <div class="stat-card">
+        <div class="stat-icon security">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div class="stat-info">
+          <div class="stat-label">Sensor Hardware Tamper Guard</div>
+          <div class="stat-value" id="secStatusText">0 Threats Flagged</div>
+          <div class="stat-sub">HMAC Token Auth Verified</div>
+        </div>
+      </div>
+
+      <!-- Sensor Nodes -->
+      <div class="stat-card">
+        <div class="stat-icon nodes">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+        </div>
+        <div class="stat-info">
+          <div class="stat-label">Active IoT Nodes</div>
+          <div class="stat-value" id="statActiveNodes">4 / 4</div>
+          <div class="stat-sub">Multi-Zone Mesh Sensor Array</div>
+        </div>
+      </div>
+
+      <!-- Evapotranspiration -->
+      <div class="stat-card">
+        <div class="stat-icon yield">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <div class="stat-info">
+          <div class="stat-label">Penman-Monteith ET0</div>
+          <div class="stat-value" id="statEt0Val">4.25 mm/day</div>
+          <div class="stat-sub"><span id="ambientTempDisplay">28.5°C</span> • Humidity <span id="humidityDisplay">45%</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Grid Column Layout -->
+    <div class="grid-two-col">
+
+      <!-- Left Column: Spatial Farm Grid & Threat Simulator -->
+      <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+        
+        <!-- Farm Map & Zone Selector -->
+        <div class="card-panel">
+          <div class="card-header">
+            <div class="card-title">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+              <h2>IoT Farm Mesh & Spatial Telemetry Grid</h2>
+            </div>
+            <div class="card-action-badge">4 Active Crop Zones</div>
+          </div>
+
+          <div class="farm-map-container">
+            <div class="farm-grid" id="farmZoneGrid">
+              <!-- Rendered dynamically by app.js -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Cyber-Physical Threat Simulator -->
+        <div class="security-sim-panel">
+          <div class="sim-header">
+            <h3>
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--crimson-danger)"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+              Hardware Security & Attack Simulator (AI Anomaly Injection Suite)
+            </h3>
+            <button class="btn btn-secondary" id="btnResetNodes" style="font-size: 0.75rem; padding: 0.3rem 0.7rem;">Reset All Keys</button>
+          </div>
+
+          <div class="attack-buttons">
+            <button class="btn-attack" id="btnAttackSpoof">
+              <span class="title">⚡ Inject Data Spoofing</span>
+              <span class="desc">Fake 95% moisture spike on Zone C</span>
+            </button>
+
+            <button class="btn-attack" id="btnAttackTamper">
+              <span class="title">🚨 Physical Node Tamper</span>
+              <span class="desc">Trigger chassis switch on Zone A</span>
+            </button>
+
+            <button class="btn-attack" id="btnAttackReplay">
+              <span class="title">🔐 Stale Nonce Replay</span>
+              <span class="desc">Corrupt HMAC token on Zone B</span>
+            </button>
+
+            <button class="btn-attack" id="btnAttackJamming">
+              <span class="title">📡 RF Jamming Attack</span>
+              <span class="desc">Drop RSSI to -98dBm on Zone D</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right Column: ML Moisture Predictive Horizon & Selected Zone Telemetry -->
+      <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+        
+        <!-- Predictive Moisture Chart -->
+        <div class="card-panel">
+          <div class="card-header">
+            <div class="card-title">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+              <h2>Predictive Soil Moisture Decay (24h ET0 Horizon)</h2>
+            </div>
+            <div class="card-action-badge" id="selZoneName">Zone A - Wheat Field</div>
+          </div>
+
+          <div class="chart-box">
+            <canvas id="moistureChart"></canvas>
+          </div>
+        </div>
+
+        <!-- Water Savings Comparison & Zone Detail Panel -->
+        <div class="grid-two-col" style="grid-template-columns: 1fr 1fr; gap: 1rem;">
+          
+          <!-- Water Savings Chart -->
+          <div class="card-panel" style="padding: 1rem;">
+            <div class="card-title" style="margin-bottom: 0.5rem;">
+              <h2 style="font-size: 0.95rem;">Water Efficiency (>35% Savings)</h2>
+            </div>
+            <div class="chart-box" style="height: 180px;">
+              <canvas id="waterChart"></canvas>
+            </div>
+          </div>
+
+          <!-- Zone Telemetry Details -->
+          <div class="card-panel" style="padding: 1rem; gap: 0.75rem;">
+            <div class="card-title">
+              <h2 style="font-size: 0.95rem;" id="selCropInfo">Zone Details</h2>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; font-size: 0.8rem;">
+              <div style="background: rgba(0,0,0,0.3); padding: 0.4rem; border-radius: 6px;">
+                <span style="color: var(--text-dim); display: block; font-size: 0.65rem;">MOISTURE / TARGET</span>
+                <span style="font-family: var(--font-mono); font-weight: 600; color: var(--cyan-primary)" id="valMoisture">24.2%</span> / <span id="valTargetMoisture">28.0%</span>
+              </div>
+              <div style="background: rgba(0,0,0,0.3); padding: 0.4rem; border-radius: 6px;">
+                <span style="color: var(--text-dim); display: block; font-size: 0.65rem;">SOIL pH / NPK</span>
+                <span style="font-family: var(--font-mono); font-weight: 600;" id="valPh">6.8</span> pH (<span id="valNpk">120-45-80</span>)
+              </div>
+            </div>
+
+            <div style="background: rgba(0,0,0,0.3); padding: 0.4rem; border-radius: 6px; font-size: 0.75rem;">
+              <span style="color: var(--text-dim); font-size: 0.65rem;">HMAC AUTH TOKEN:</span>
+              <div style="font-family: var(--font-mono); color: var(--emerald-primary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" id="valToken">HMAC_SHA256_e89a</div>
+            </div>
+
+            <div style="background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); padding: 0.4rem 0.6rem; border-radius: 6px; font-size: 0.75rem;">
+              <span style="color: var(--emerald-primary); font-weight: 600; display: block; font-size: 0.65rem;">AI PRECISION DOSE CALCULATOR</span>
+              <span id="recDoseVal">Calculating optimal water pulse...</span>
+            </div>
+
+            <button class="btn btn-primary" id="btnToggleValve" style="width: 100%; justify-content: center; margin-top: 0.25rem;">Open Irrigation Valve</button>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Bottom Real-Time AI Security & System Event Log Stream -->
+    <div class="card-panel">
+      <div class="card-header">
+        <div class="card-title">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+          <h2>Real-Time AI Telemetry & Security Incident Logs</h2>
+        </div>
+        <div class="card-action-badge">Live Filter Stream</div>
+      </div>
+
+      <div class="log-terminal" id="logTerminal">
+        <!-- Rendered dynamically by logsViewer.js -->
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ES Modules -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
